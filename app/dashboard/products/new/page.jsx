@@ -50,7 +50,7 @@ export default function NewProductPage() {
       const data = await response.json();
   
       if (response.ok) {
-        router.push("/dashboard/products");
+        router.push("/dashboard");
       } else {
         console.error("Error response:", data);
         alert(`Error: ${data.error}\n${data.message || ''}\n${data.details || ''}`);

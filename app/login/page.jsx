@@ -26,7 +26,10 @@ export default function LoginPage() {
       setError("Invalid credentials");
       return;
     }
-    router.push("/products");
+    // Small delay to ensure session is established
+    setTimeout(() => {
+      router.push("/dashboard");
+    }, 100);
   };
 
   return (

@@ -1,5 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
+import { ObjectId } from "mongodb";
+import clientPromise from "@/lib/mongodb";
 
 async function getProduct(id) {
   try {
@@ -42,9 +45,11 @@ export default async function ProductDetailsPage({ params }) {
         {/* Product Image */}
         <div className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm">
           {product.image ? (
-            <img
+            <Image
               src={product.image}
               alt={product.name}
+              width={500}
+              height={500}
               className="aspect-square w-full rounded-lg object-cover"
             />
           ) : (

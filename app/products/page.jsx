@@ -1,18 +1,14 @@
+export const dynamic = "force-dynamic";
+
 import Link from "next/link";
+import clientPromise from '@/lib/mongodb';
 
 async function getProducts() {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 
-      (process.env.NODE_ENV === 'production' 
-        ? 'https://your-domain.com' 
-        : 'http://localhost:3000');
-    const res = await fetch(`${baseUrl}/api/products`, {
-      cache: 'no-store',
-    });
-    if (!res.ok) {
-      return [];
-    }
-    return res.json();
+    const client = await clientPromise;
+    const db = client.db('trion-mart');
+    const products = await db.collection('products').find({}).toArray();
+    return products;
   } catch (error) {
     console.error('Error fetching products:', error);
     return [];
@@ -76,4 +72,3 @@ export default async function ProductsPage() {
     </div>
   );
 }
-

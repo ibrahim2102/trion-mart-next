@@ -142,7 +142,7 @@ export default function HomePage() {
         <div className="mb-8">
           <h2 className="text-3xl font-semibold text-neutral-900">Shop by Category</h2>
           <p className="mt-2 text-neutral-600">
-            Find exactly what you're looking for
+            Find exactly what you are looking for
           </p>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -224,7 +224,7 @@ export default function HomePage() {
               className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm"
             >
               <div className="mb-4 text-lg">{testimonial.rating}</div>
-              <p className="mb-4 text-neutral-700">"{testimonial.text}"</p>
+              <p className="mb-4 text-neutral-700">&quot;{testimonial.text}&quot;</p>
               <div>
                 <div className="font-semibold text-neutral-900">{testimonial.name}</div>
                 <div className="text-sm text-neutral-600">{testimonial.role}</div>

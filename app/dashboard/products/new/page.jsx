@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
@@ -120,10 +121,12 @@ export default function NewProductPage() {
           />
           {imagePreview && (
             <div className="mt-2">
-              <img
+              <Image
                 src={imagePreview}
                 alt="Preview"
-                className="h-32 w-32 rounded-lg object-cover"
+                width={128}
+                height={128}
+                className="rounded-lg object-cover"
               />
             </div>
           )}

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 
@@ -93,13 +94,15 @@ export default function DashboardPage() {
                 className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm"
               >
                 {product.image ? (
-                  <img
+                  <Image
                     src={product.image}
                     alt={product.name}
-                    className="aspect-[4/3] w-full rounded-lg object-cover"
+                    width={300}
+                    height={225}
+                    className="aspect-4/3 w-full rounded-lg object-cover"
                   />
                 ) : (
-                  <div className="aspect-[4/3] w-full rounded-lg bg-neutral-100" />
+                  <div className="aspect-4/3 w-full rounded-lg bg-neutral-100" />
                 )}
                 <div className="mt-4">
                   <div className="text-sm font-medium text-neutral-900">

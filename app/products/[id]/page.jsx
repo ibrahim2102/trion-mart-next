@@ -3,26 +3,23 @@ import { notFound } from "next/navigation";
 
 async function getProduct(id) {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 
-      (process.env.NODE_ENV === 'production' 
-        ? 'https://your-domain.com' 
-        : 'http://localhost:3000');
-    const res = await fetch(`${baseUrl}/api/products/${id}`, {
-      cache: 'no-store',
-    });
-    
-    if (!res.ok) {
-      if (res.status === 404) {
-        return null;
-      }
-      throw new Error('Failed to fetch product');
+    if (!id || !ObjectId.isValid(id)) {
+      return null;
     }
-    return res.json();
+
+    const client = await clientPromise;
+    const db = client.db('trion-mart');
+    const product = await db.collection('products').findOne({ 
+      _id: new ObjectId(id) 
+    });
+
+    return product;
   } catch (error) {
     console.error('Error fetching product:', error);
     return null;
   }
 }
+
 
 export default async function ProductDetailsPage({ params }) {
   const { id } = await params;

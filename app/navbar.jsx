@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import { useState, useRef, useEffect } from "react";
 
 export default function Navbar() {
   const { data: session, status } = useSession();
+  const pathname = usePathname();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const profileRef = useRef(null);
 
@@ -25,6 +27,14 @@ export default function Navbar() {
 
   const isLoading = status === "loading";
 
+  // Helper function to check if a path is active
+  const isActive = (path) => {
+    if (path === "/") {
+      return pathname === "/";
+    }
+    return pathname.startsWith(path);
+  };
+
   return (
     <header className="relative z-50 border-b border-neutral-200 bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
@@ -32,14 +42,35 @@ export default function Navbar() {
           Trion Mart
         </Link>
         <nav className="flex items-center gap-6">
-          <Link href="/" className="text-sm text-neutral-700 hover:text-neutral-900">
+          <Link 
+            href="/" 
+            className={`text-sm transition-colors ${
+              isActive("/") 
+                ? "text-neutral-900 font-medium" 
+                : "text-neutral-700 hover:text-neutral-900"
+            }`}
+          >
             Home
           </Link>
-          <Link href="/products" className="text-sm text-neutral-700 hover:text-neutral-900">
+          <Link 
+            href="/products" 
+            className={`text-sm transition-colors ${
+              isActive("/products") 
+                ? "text-neutral-900 font-medium" 
+                : "text-neutral-700 hover:text-neutral-900"
+            }`}
+          >
             Products
           </Link>
           {session && (
-            <Link href="/dashboard" className="text-sm text-neutral-700 hover:text-neutral-900">
+            <Link 
+              href="/dashboard" 
+              className={`text-sm transition-colors ${
+                isActive("/dashboard") 
+                  ? "text-neutral-900 font-medium" 
+                  : "text-neutral-700 hover:text-neutral-900"
+              }`}
+            >
               Dashboard
             </Link>
           )}

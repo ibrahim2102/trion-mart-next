@@ -11,7 +11,7 @@ export default function LoginPage() {
   const router = useRouter();
 
   const handleGoogleLogin = () => {
-    signIn("google", { callbackUrl: "/products" });
+    signIn("google", { callbackUrl: "/dashboard" });
   };
 
   const handleCredentialsLogin = async (e) => {
@@ -20,16 +20,13 @@ export default function LoginPage() {
     const res = await signIn("credentials", {
       email,
       password,
-      redirect: false,
+      redirect: true,
+      callbackUrl: "/dashboard",
     });
     if (res?.error) {
       setError("Invalid credentials");
       return;
     }
-    // Small delay to ensure session is established
-    setTimeout(() => {
-      router.push("/dashboard");
-    }, 100);
   };
 
   return (

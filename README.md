@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Trion Mart
 
-## Getting Started
+A modern e-commerce dashboard built with **Next.js 15/16 (App Router)**, **NextAuth Google login**, and **MongoDB**.  
+This project allows users to manage products, view details, and includes authentication with Google.
 
-First, run the development server:
+Live Link: https://trion-mart.vercel.app
+
+## 📖 Project Description
+
+Trion Mart is a simple online product management dashboard.  
+It features authentication via Google, dynamic product pages, and an admin dashboard for creating, editing, and viewing products.
+
+---
+
+## ⚙️ Setup & Installation
+
+1. Clone the repository
 
 ```bash
+git clone https://github.com/YOUR_USERNAME/trion-mart.git
+cd trion-mart
+
+2. Install dependencies
+
+npm install
+
+3. Run the development server
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Route Summary:
+Route	Description	Access
+/	Landing / Home page	Public
+/login	Google authentication page	Public
+/dashboard	Admin dashboard	Protected
+/dashboard/products	View all products	Protected
+/dashboard/products/new	Create a new product	Protected
+/products/[id]	View product details	Public
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Implemented Features:
 
-## Learn More
+1.Google Login (NextAuth)
 
-To learn more about Next.js, take a look at the following resources:
+2.Protected Dashboard
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3.CRUD for Products
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4.Create new product
 
-## Deploy on Vercel
+5.View all products
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+6.View product details
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+7.Dynamic product pages
+
+8.Responsive UI with Tailwind CSS
+
+9.MongoDB integration for persistent data
+
+10.Middleware to protect routes
+
+11.Server components with dynamic rendering

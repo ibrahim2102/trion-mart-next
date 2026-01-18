@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import Link from "next/link";
+import { Suspense } from "react";
 import clientPromise from '@/lib/mongodb';
 
 async function getProducts() {
@@ -15,7 +16,25 @@ async function getProducts() {
   }
 }
 
-export default async function ProductsPage() {
+function ProductsLoading() {
+  return (
+    <div className="mx-auto max-w-6xl px-6 py-12">
+      <div className="mb-8 flex items-center justify-between">
+        <h1 className="text-2xl font-semibold text-neutral-900">Products</h1>
+      </div>
+      <div className="flex items-center justify-center py-12">
+        <div className="flex flex-col items-center gap-4">
+          <div className="relative h-12 w-12">
+            <div className="absolute inset-0 animate-spin rounded-full border-4 border-neutral-200 border-t-neutral-900"></div>
+          </div>
+          <p className="text-sm text-neutral-600">Loading products...</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+async function ProductsList() {
   const products = await getProducts();
 
   return (
@@ -70,5 +89,13 @@ export default async function ProductsPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<ProductsLoading />}>
+      <ProductsList />
+    </Suspense>
   );
 }
